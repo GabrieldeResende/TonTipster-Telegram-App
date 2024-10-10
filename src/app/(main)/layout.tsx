@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Header from "../components/header"
 import BottomNav from "../components/bottomNav"
+import { ThirdwebProvider } from "thirdweb/react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <Header />
-      {children}
-      <BottomNav />
+      <ThirdwebProvider>
+        <Header />
+        {children}
+        <BottomNav />
+      </ThirdwebProvider>
     </div>
   )
 }

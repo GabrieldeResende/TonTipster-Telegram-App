@@ -48,8 +48,6 @@ export default function Bet() {
           </Link>
         ))}
       </div>
-      <div className="fixed bottom-0 left-0 right-0 px-4 pb-6 pt-1 bg-black">
-      </div>
     </main>
   )
 }

@@ -6,7 +6,6 @@ import { ConnectButton } from 'thirdweb/react';
 
 export default function Matches() {
 
-  client: String
   return (
     <main className='flex min-h-screen flex-col text-sm items-start p-4 bg-black'>
       <div className='w-full h-full'>

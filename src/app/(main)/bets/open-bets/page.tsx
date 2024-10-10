@@ -35,6 +35,8 @@ const bets = [
 
 
 export default function Bet() {
+  const searchParams = new URLSearchParams(window.location.search);
+  console.log(searchParams.get('leagueId'));
   return (
     <main
       style={{ backgroundImage: `url(/assets/openBets-background.png)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
@@ -74,8 +76,6 @@ export default function Bet() {
           </div>
         ))}
       </div>
-      {/* <div className="fixed bottom-0 left-0 right-0 px-4 pb-6 pt-1 bg-black">
-      </div> */}
     </main>
   )
 }

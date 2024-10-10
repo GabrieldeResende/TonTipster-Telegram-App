@@ -307,9 +307,9 @@ const FootballBetComponent = () => {
             Post Bet
           </button>
         </form>
-        <button className='bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-2 rounded-lg w-full'>
+        {/* <button className='bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-2 rounded-lg w-full'>
           Cancel
-        </button>
+        </button> */}
       </div>
     </main>
   )

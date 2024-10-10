@@ -1,123 +1,119 @@
 "use client"
+import useLeague from "@/app/hooks/use-League";
+import { league } from "@/entity/league";
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
+import React, { useEffect, useState } from "react";
 
-const footballGames = [
-  {
-    id: "2ad488c4-25f0-4e74-9955-e169789f0a6b",
-    fixtureId: 1205405,
-    fixtureDate: "2024-09-04T22:00:00.000Z",
-    venueName: "Estadio Metropolitano de Techo",
-    venueCity: "Bogotá, D.C.",
-    statusLong: "Second Half",
-    statusElapsed: 90,
-    leagueDetails: {
-      id: 920,
-      logo: "https://media.api-sports.io/football/leagues/920.png",
-      name: "World Cup - U20 - Women",
-      season: 2024,
-    },
-    teamsDetails: {
-      away: {
-        id: 19090,
-        logo: "https://media.api-sports.io/football/teams/19090.png",
-        name: "Nigeria U20 W",
-      },
-      home: {
-        id: 19084,
-        logo: "https://media.api-sports.io/football/teams/19084.png",
-        name: "Germany U20 W",
-      },
-    },
-    scoreDetails: {
-      fulltime: {
-        away: null,
-        home: null,
-      },
-      halftime: {
-        away: 0,
-        home: 1,
-      },
-    },
-    createdAt: "2024-09-04T23:17:10.909Z",
-    updatedAt: "2024-09-04T23:56:47.937Z",
-  },
-  {
-    id: "2ad488c4-25f0-4e74-9955-e169789f0a6s",
-    fixtureId: 1205405,
-    fixtureDate: "2024-09-04T22:00:00.000Z",
-    venueName: "Estadio Metropolitano de Techo",
-    venueCity: "Bogotá, D.C.",
-    statusLong: "Second Half",
-    statusElapsed: 90,
-    leagueDetails: {
-      id: 920,
-      logo: "https://media.api-sports.io/football/leagues/920.png",
-      name: "World Cup - U20 - Women",
-      season: 2024,
-    },
-    teamsDetails: {
-      away: {
-        id: 19090,
-        logo: "https://media.api-sports.io/football/teams/19090.png",
-        name: "Nigeria U20 W",
-      },
-      home: {
-        id: 19084,
-        logo: "https://media.api-sports.io/football/teams/19084.png",
-        name: "Germany U20 W",
-      },
-    },
-    scoreDetails: {
-      fulltime: {
-        away: null,
-        home: null,
-      },
-      halftime: {
-        away: 0,
-        home: 1,
-      },
-    },
-    createdAt: "2024-09-04T23:17:10.909Z",
-    updatedAt: "2024-09-04T23:56:47.937Z",
-  },
-]
+
+
+// const footballGames = [
+//   {
+//     id: "2ad488c4-25f0-4e74-9955-e169789f0a6b",
+//     fixtureId: 1205405,
+//     fixtureDate: "2024-09-04T22:00:00.000Z",
+//     venueName: "Estadio Metropolitano de Techo",
+//     venueCity: "Bogotá, D.C.",
+//     statusLong: "Second Half",
+//     statusElapsed: 90,
+//     leagueDetails: {
+//       id: 920,
+//       logo: "https://media.api-sports.io/football/leagues/920.png",
+//       name: "World Cup - U20 - Women",
+//       season: 2024,
+//     },
+//     teamsDetails: {
+//       away: {
+//         id: 19090,
+//         logo: "https://media.api-sports.io/football/teams/19090.png",
+//         name: "Nigeria U20 W",
+//       },
+//       home: {
+//         id: 19084,
+//         logo: "https://media.api-sports.io/football/teams/19084.png",
+//         name: "Germany U20 W",
+//       },
+//     },
+//     scoreDetails: {
+//       fulltime: {
+//         away: null,
+//         home: null,
+//       },
+//       halftime: {
+//         away: 0,
+//         home: 1,
+//       },
+//     },
+//     createdAt: "2024-09-04T23:17:10.909Z",
+//     updatedAt: "2024-09-04T23:56:47.937Z",
+//   },
+//   {
+//     id: "2ad488c4-25f0-4e74-9955-e169789f0a6s",
+//     fixtureId: 1205405,
+//     fixtureDate: "2024-09-04T22:00:00.000Z",
+//     venueName: "Estadio Metropolitano de Techo",
+//     venueCity: "Bogotá, D.C.",
+//     statusLong: "Second Half",
+//     statusElapsed: 90,
+//     leagueDetails: {
+//       id: 920,
+//       logo: "https://media.api-sports.io/football/leagues/920.png",
+//       name: "World Cup - U20 - Women",
+//       season: 2024,
+//     },
+//     teamsDetails: {
+//       away: {
+//         id: 19090,
+//         logo: "https://media.api-sports.io/football/teams/19090.png",
+//         name: "Nigeria U20 W",
+//       },
+//       home: {
+//         id: 19084,
+//         logo: "https://media.api-sports.io/football/teams/19084.png",
+//         name: "Germany U20 W",
+//       },
+//     },
+//     scoreDetails: {
+//       fulltime: {
+//         away: null,
+//         home: null,
+//       },
+//       halftime: {
+//         away: 0,
+//         home: 1,
+//       },
+//     },
+//     createdAt: "2024-09-04T23:17:10.909Z",
+//     updatedAt: "2024-09-04T23:56:47.937Z",
+//   },
+// ]
 
 const FootballSchedule = () => {
+
+  const leagues = useLeague();
+  // console.log(leagues);
+
   return (
     <div className='flex flex-col gap-2 w-12/12 text-white'>
-      {footballGames.map((game) => (
-        <Link href={`/bets/open-bets`} key={game.id}>
+      {((leagues ?? [])).flatMap((league: league) => (
+        <Link href={`/home/upcoming-matche`} key={league?.id}>
           <div
             className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'
           >
             <div className='flex justify-between items-center mb-2'>
               <div className='flex items-center'>
-                <Image
-                  src={game.teamsDetails.home.logo}
-                  alt={game.teamsDetails.home.name}
+                <img
+                  src={league?.logo}
+                  alt={league?.name}
                   width={30}
                   height={30}
                   className='mr-2'
+                  loading="lazy"
                 />
-                <span className='text-sm'>{game.teamsDetails.home.name}</span>
-              </div>
-              <div className='flex items-center'>
-                <span className='text-sm'>{game.teamsDetails.away.name}</span>
-                <Image
-                  src={game.teamsDetails.away.logo}
-                  alt={game.teamsDetails.away.name}
-                  width={30}
-                  height={30}
-                  className='ml-2'
-                />
+                <span className='text-sm'>{league?.name}</span>
               </div>
             </div>
             <div className='flex items-center justify-between text-[#D5B3FB] mt-4'>
-              <div>
-                <p>{game.fixtureDate}</p>
-              </div>
               <button className='bg-black hover:bg-[#422479] text-white font-bold py-1 px-2 text-sm rounded-lg'>
                 View Open Bets
               </button>
