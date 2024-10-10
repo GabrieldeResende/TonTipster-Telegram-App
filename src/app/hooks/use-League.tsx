@@ -17,7 +17,6 @@ const useLeague = (): league[] => {
         if (response?.status !== 200) return;
         const responseBody: league[] = response.data.response
         setLeague(responseBody.map((league) => league.league))
-
     }
 
     useEffect(() => {

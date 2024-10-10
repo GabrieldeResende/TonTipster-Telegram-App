@@ -1,105 +1,46 @@
 "use client"
-import useLeague from "@/app/hooks/use-League";
-import { league } from "@/entity/league";
-import Image from "next/image"
-import Link from "next/link"
-import React, { useEffect, useState } from "react";
+import React, { useState } from 'react';
+import useLeague from '@/app/hooks/use-League';
+import { league } from '@/entity/league';
+import Link from 'next/link';
 
-
-
-// const footballGames = [
-//   {
-//     id: "2ad488c4-25f0-4e74-9955-e169789f0a6b",
-//     fixtureId: 1205405,
-//     fixtureDate: "2024-09-04T22:00:00.000Z",
-//     venueName: "Estadio Metropolitano de Techo",
-//     venueCity: "Bogotá, D.C.",
-//     statusLong: "Second Half",
-//     statusElapsed: 90,
-//     leagueDetails: {
-//       id: 920,
-//       logo: "https://media.api-sports.io/football/leagues/920.png",
-//       name: "World Cup - U20 - Women",
-//       season: 2024,
-//     },
-//     teamsDetails: {
-//       away: {
-//         id: 19090,
-//         logo: "https://media.api-sports.io/football/teams/19090.png",
-//         name: "Nigeria U20 W",
-//       },
-//       home: {
-//         id: 19084,
-//         logo: "https://media.api-sports.io/football/teams/19084.png",
-//         name: "Germany U20 W",
-//       },
-//     },
-//     scoreDetails: {
-//       fulltime: {
-//         away: null,
-//         home: null,
-//       },
-//       halftime: {
-//         away: 0,
-//         home: 1,
-//       },
-//     },
-//     createdAt: "2024-09-04T23:17:10.909Z",
-//     updatedAt: "2024-09-04T23:56:47.937Z",
-//   },
-//   {
-//     id: "2ad488c4-25f0-4e74-9955-e169789f0a6s",
-//     fixtureId: 1205405,
-//     fixtureDate: "2024-09-04T22:00:00.000Z",
-//     venueName: "Estadio Metropolitano de Techo",
-//     venueCity: "Bogotá, D.C.",
-//     statusLong: "Second Half",
-//     statusElapsed: 90,
-//     leagueDetails: {
-//       id: 920,
-//       logo: "https://media.api-sports.io/football/leagues/920.png",
-//       name: "World Cup - U20 - Women",
-//       season: 2024,
-//     },
-//     teamsDetails: {
-//       away: {
-//         id: 19090,
-//         logo: "https://media.api-sports.io/football/teams/19090.png",
-//         name: "Nigeria U20 W",
-//       },
-//       home: {
-//         id: 19084,
-//         logo: "https://media.api-sports.io/football/teams/19084.png",
-//         name: "Germany U20 W",
-//       },
-//     },
-//     scoreDetails: {
-//       fulltime: {
-//         away: null,
-//         home: null,
-//       },
-//       halftime: {
-//         away: 0,
-//         home: 1,
-//       },
-//     },
-//     createdAt: "2024-09-04T23:17:10.909Z",
-//     updatedAt: "2024-09-04T23:56:47.937Z",
-//   },
-// ]
+const ITEMS_PER_PAGE = 10;
 
 const FootballSchedule = () => {
-
   const leagues = useLeague();
-  // console.log(leagues);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredLeagues = leagues?.filter((league: league) =>
+    league.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalPages = Math.ceil((filteredLeagues?.length ?? 0) / ITEMS_PER_PAGE);
+
+  const paginatedLeagues = filteredLeagues?.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  ) ?? [];
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   return (
-    <div className='flex flex-col gap-2 w-12/12 text-white'>
-      {((leagues ?? [])).flatMap((league: league) => (
-        <Link href={`/home/upcoming-matche`} key={league?.id}>
-          <div
-            className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'
-          >
+    <div className='flex flex-col gap-2 w-full text-white'>
+      <input
+        type='text'
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder='Search leagues by name...'
+        className='mb-4 p-2 text-black rounded-lg'
+      />
+
+      {paginatedLeagues.flatMap((league: league) => (
+        <Link href={`/home/upcoming-matche?leagueId=${league.id}`} key={league.id}>
+          <div className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'>
             <div className='flex justify-between items-center mb-2'>
               <div className='flex items-center'>
                 <img
@@ -121,15 +62,44 @@ const FootballSchedule = () => {
           </div>
         </Link>
       ))}
+
+      <div className='flex justify-center mt-4'>
+        <button
+          className={`px-4 py-2 mx-1 rounded-lg ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            className={`px-4 py-2 mx-1 rounded-lg ${currentPage === index + 1 ? 'bg-purple-600 text-white' : 'bg-gray-200 text-black'}`}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          className={`px-4 py-2 mx-1 rounded-lg ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default function UpcomingMatches() {
   return (
     <main
-      style={{ backgroundImage: `url(/assets/footbal-matches-background.png)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
-      className='flex min-h-screen flex-col text-sm px-4 bg-black'>
+      style={{ backgroundImage: `url(/assets/footbal-matches-background.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+      className='flex min-h-screen flex-col text-sm px-4 bg-black'
+    >
       <div className='font-bold bg-[var(--primary-purple)] p-2 w-full rounded-lg mt-6'>
         <h2 className='text-[13px] text-center font-semibold text-gray-300'>
           Upcoming football matches
@@ -139,5 +109,5 @@ export default function UpcomingMatches() {
         <FootballSchedule />
       </div>
     </main>
-  )
+  );
 }

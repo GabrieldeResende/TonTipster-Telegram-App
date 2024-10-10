@@ -16,7 +16,7 @@ const useMatches = (): match[] => {
 
         if (response?.status !== 200) return;
         const responseBody: match[] = response.data.response
-        setMatches(responseBody.map((match) => match.match))
+        setMatches(responseBody.map((match) => match))
     }
 
     useEffect(() => {

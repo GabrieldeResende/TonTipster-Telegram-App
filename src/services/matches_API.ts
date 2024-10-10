@@ -6,7 +6,7 @@ export const fetchMatchesAPI = async () => {
             method: 'GET',
             url: 'https://v3.football.api-sports.io/fixtures?league=692&season=2020', //ajustar url
             headers: {
-                'x-rapidapi-key': '81d85f6cabf782585ca828b6e183434c',
+                'x-rapidapi-key': '86ead8f9b275639a60446ddeae83c439',
                 'x-rapidapi-host': 'v3.football.api-sports.io'
             }
         };

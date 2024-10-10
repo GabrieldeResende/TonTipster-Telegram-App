@@ -17,6 +17,15 @@ const BottomNav = () => {
           <p className='text-sm'>Home</p>
         </div>
       </Link>
+      {/* <Link href='#' passHref>
+        <div
+          className={`flex flex-col items-center ${pathname === "/home" ? "text-purple-500" : "text-white"
+            }`}
+        >
+          <FontAwesomeIcon icon={faHome} />
+          <p className='text-sm'>NFTs</p>
+        </div>
+      </Link> */}
       <Link href='/bets/my-bets' passHref>
         <div
           className={`flex flex-col items-center ${pathname === "/bets/my-bets" ? "text-purple-500" : "text-white"
