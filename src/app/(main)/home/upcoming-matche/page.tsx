@@ -8,7 +8,12 @@ import { match } from '@/entity/match';
 const ITEMS_PER_PAGE = 10;
 
 const MatchesSchedule = () => {
-    const matches = useMatches();
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const leagueId = parseInt(searchParams.get('leagueId') ?? '0')
+
+
+    const matches = useMatches(leagueId);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -51,7 +56,7 @@ const MatchesSchedule = () => {
             />
 
             {((paginatedMatches ?? [])).flatMap((match: match) => (
-                <Link href={`/home/game-matche`} key={match.fixture.id}>
+                <Link href={`/home/game-match?fixtureId=${match?.fixture?.id}`} key={match.fixture.id}>
                     <div className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'>
                         <div className='flex justify-between items-center mb-2'>
                             <div className='flex items-center'>
@@ -90,11 +95,11 @@ const MatchesSchedule = () => {
                         </div>
                         <div className='flex items-center justify-between text-[#D5B3FB] mt-4'>
                             <div>
-                                <p>{match?.fixture.date}</p>
+                                <p>{new Date(match?.fixture?.date).toLocaleDateString('en-us')}</p>
                             </div>
-                            <Link href="/home/game-matche">
+                            <Link href="#">
                                 <button className='bg-black hover:bg-[#422479] text-white font-bold py-1 px-2 text-sm rounded-lg'>
-                                    Game Info
+                                    Create Bet
                                 </button>
                             </Link>
                         </div>

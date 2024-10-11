@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const fetchLeagueAPI = async () => {
+export const fetchUFCAPI = async () => {
     try {
         const options = {
             method: 'GET',
-            url: `https://v3.football.api-sports.io/leagues?current=true&season=${new Date().getFullYear()}`,
+            url: `https://v1.mma.api-sports.io/fights?season=${new Date().getFullYear()}`, 
             headers: {
-                'x-rapidapi-key': '86ead8f9b275639a60446ddeae83c439',
-                'x-rapidapi-host': 'v3.football.api-sports.io'
+                'x-rapidapi-key': '81d85f6cabf782585ca828b6e183434c',
+                'x-rapidapi-host': 'v1.mma.api-sports.io'
             }
         };
 
