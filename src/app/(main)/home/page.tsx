@@ -61,7 +61,7 @@ export default function Matches() {
             </div>
           </div>
         </Link>
-        <Link href="/home/upcoming-matches">
+        <Link href="/home/upcoming-leagues">
           <div
             style={{ backgroundImage: `url(/assets/football-background.png)` }}
             className='w-full bg-cover bg-center rounded-lg p-6 my-4'

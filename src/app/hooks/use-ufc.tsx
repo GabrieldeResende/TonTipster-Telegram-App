@@ -21,7 +21,7 @@ const useUFC = (): Fight[] => {
 
     useEffect(() => {
         fetchUFC();
-    }, [])
+    }, [ufcFight])
 
     return ufcFight;
 }
