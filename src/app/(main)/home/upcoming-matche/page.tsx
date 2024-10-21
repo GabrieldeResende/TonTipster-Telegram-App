@@ -97,7 +97,7 @@ const MatchesSchedule = () => {
                             <div>
                                 <p>{new Date(match?.fixture?.date).toLocaleDateString('en-us')}</p>
                             </div>
-                            <Link href="#">
+                            <Link href="../bets/post-bet">
                                 <button className='bg-black hover:bg-[#422479] text-white font-bold py-1 px-2 text-sm rounded-lg'>
                                     Create Bet
                                 </button>

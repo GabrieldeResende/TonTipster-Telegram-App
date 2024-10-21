@@ -27,7 +27,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwindcss-textshadow": "^2.1.3",
-    "thirdweb": "^5.61.1"
+    "thirdweb": "^5.61.1",
+    "web3": "^4.13.0"
   },
   "devDependencies": {
     "@types/node": "^20",

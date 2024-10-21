@@ -1,12 +1,12 @@
+"use client"
 import Link from "next/link";
-import WalletConnectBtn from "./walletConnectBtn";
 import Image from "next/image";
 import { ConnectButton } from "thirdweb/react";
 import { client } from "@/client";
 import { sepolia } from "thirdweb/chains";
-import TonConnect from "@tonconnect/sdk";
 
 export default function Header() {
+
   return (
     <div className='flex w-full justify-between p-4 bg-black text-white'>
       <Link href='/home'>
@@ -25,10 +25,6 @@ export default function Header() {
       {/* <WalletConnectBtn /> */}
       <ConnectButton
         client={client}
-        accountAbstraction={{
-          chain: sepolia,
-          sponsorGas: true
-        }}
       />
     </div>
   )

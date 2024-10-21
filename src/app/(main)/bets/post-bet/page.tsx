@@ -176,10 +176,10 @@ const FootballBetComponent = () => {
     <main className='bg-black text-purple-300 flex items-center justify-center px-4 py-6 h-full'>
       <div className='w-full max-w-md border-purple-400 border rounded-lg p-6'>
         <h1 className='text-purple-400 font-bold mb-8'>
-          Create your football bet
+          Create your bet
         </h1>
         <form onSubmit={handleSubmit} className='space-y-4 mb-4'>
-          <div className='space-y-2'>
+          {/* <div className='space-y-2'>
             <label htmlFor='game-select' className='block text-sm font-medium'>
               Select Game
             </label>
@@ -200,7 +200,7 @@ const FootballBetComponent = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
           <div className='space-y-2'>
             <label htmlFor='game-select' className='block text-sm font-medium'>
               Select Prediction
@@ -214,6 +214,8 @@ const FootballBetComponent = () => {
               <option value='' disabled>
                 Select a prediction
               </option>
+              {/* <option value="">time 1</option>
+              <option value="">time 2</option> */}
               {getPossiblePredictions(
                 selectedTeamDetails.home,
                 selectedTeamDetails.away
@@ -245,7 +247,7 @@ const FootballBetComponent = () => {
 
           <div className='space-y-2'>
             <label htmlFor='odds' className='block text-sm font-medium'>
-              Odds
+              Split
             </label>
             <div className='relative'>
               <input
@@ -275,7 +277,7 @@ const FootballBetComponent = () => {
               />
             </div>
           </div>
-          <div className='space-y-2'>
+          {/* <div className='space-y-2'>
             <label htmlFor='expiry-date' className='block text-sm font-medium'>
               Expiry Date
             </label>
@@ -292,7 +294,7 @@ const FootballBetComponent = () => {
                 placeholder='Bet expiry date'
               />
             </div>
-          </div>
+          </div> */}
 
           <div className='space-y-2 py-2'>
             <p className='block text-sm font-medium'>
