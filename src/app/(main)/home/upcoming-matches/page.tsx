@@ -1,24 +1,31 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import useMatches from '@/app/hooks/use-Matches';
 import { match } from '@/entity/match';
+import { useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 10;
 
 const MatchesSchedule = () => {
 
-    const searchParams = new URLSearchParams(window.location.search);
-    const leagueId = parseInt(searchParams.get('leagueId') ?? '0')
-
-
-    const matches = useMatches(leagueId);
+    const searchParams = useSearchParams();
+    const leagueId = parseInt(searchParams.get('leagueId') ?? '0');
+    
+    
+    const matches = useMatches({ leagueId: leagueId, fixtureId: 0 });
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
+    const [matchesGames, setMatchesGames] = useState<match[] | null>(null)
+
+    useEffect(() => {
+        if(leagueId === 0) return;
+        setMatchesGames(matches)
+    }, [matches])
 
     // Calculate total pages based on filtered matches
-    const filteredMatches = matches?.filter((match: match) =>
+    const filteredMatches = matchesGames?.filter((match: match) =>
         match.teams.home.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         match.teams.away.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -56,7 +63,7 @@ const MatchesSchedule = () => {
             />
 
             {((paginatedMatches ?? [])).flatMap((match: match) => (
-                <Link href={`/home/game-match?fixtureId=${match?.fixture?.id}`} key={match.fixture.id}>
+                <Link href={`/bets/post-bet?fixtureId=${match?.fixture?.id}`} key={match.fixture.id}>
                     <div className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'>
                         <div className='flex justify-between items-center mb-2'>
                             <div className='flex items-center'>
@@ -97,7 +104,7 @@ const MatchesSchedule = () => {
                             <div>
                                 <p>{new Date(match?.fixture?.date).toLocaleDateString('en-us')}</p>
                             </div>
-                            <Link href="../bets/post-bet">
+                            <Link href={`/bets/post-bet?fixtureId=${match?.fixture?.id}`}>
                                 <button className='bg-black hover:bg-[#422479] text-white font-bold py-1 px-2 text-sm rounded-lg'>
                                     Create Bet
                                 </button>

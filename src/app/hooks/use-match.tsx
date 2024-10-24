@@ -2,19 +2,13 @@ import { match } from "@/entity/match";
 import { fetchMatchesAPI } from "@/services/matches_API";
 import { useEffect, useState } from "react";
 
-interface filter {
-    leagueId?: number
-    fixtureId?: number
-}
-
-const useMatches = (filter: filter): match[] => {
-    if(filter.leagueId === 0 && filter.fixtureId === 0) return [];
+const useMatches = (leagueId: number = 0, fixtureId: number = 0): match[] => {
     const [matches, setMatches] = useState<match[]>([])
 
     const fetchMatches = async () => {
         let response;
         try {
-            response = await fetchMatchesAPI(filter.leagueId, filter.fixtureId)
+            response = await fetchMatchesAPI(leagueId, fixtureId)
         } catch (error) {
             console.log(error)
         }
@@ -26,7 +20,7 @@ const useMatches = (filter: filter): match[] => {
 
     useEffect(() => {
         fetchMatches();
-    }, [])
+    }, [matches])
 
     return matches;
 }

@@ -15,33 +15,96 @@
         "name": "bets",
         "outputs": [
             {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
+                "internalType": "address",
+                "name": "player1",
+                "type": "address"
             },
             {
                 "internalType": "address",
-                "name": "bettor",
+                "name": "player2",
                 "type": "address"
             },
             {
                 "internalType": "uint256",
-                "name": "amount",
+                "name": "player1Amount",
                 "type": "uint256"
             },
             {
-                "internalType": "enum TonTipster.Options",
-                "name": "choice",
+                "internalType": "uint256",
+                "name": "player2Amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "enum TonTipster.Choice",
+                "name": "player1Choice",
                 "type": "uint8"
             },
             {
-                "internalType": "enum TonTipster.BetState",
-                "name": "state",
+                "internalType": "enum TonTipster.Choice",
+                "name": "player2Choice",
                 "type": "uint8"
             },
             {
                 "internalType": "uint256",
-                "name": "matchedBetId",
+                "name": "matchId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "enum TonTipster.BetStatus",
+                "name": "status",
+                "type": "uint8"
+            },
+            {
+                "internalType": "address",
+                "name": "winner",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "betsByAddress",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "betsByMatch",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
                 "type": "uint256"
             }
         ],
@@ -75,8 +138,63 @@
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "matchId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "enum TonTipster.Choice",
+                "name": "choice",
+                "type": "uint8"
+            }
+        ],
+        "name": "createBet",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
         "inputs": [],
-        "name": "finishGame",
+        "name": "depositFee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "finalFee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "betId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "enum TonTipster.Choice",
+                "name": "result",
+                "type": "uint8"
+            }
+        ],
+        "name": "finalizeBet",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -85,99 +203,16 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "betId",
                 "type": "uint256"
-            }
-        ],
-        "name": "firstChoiceBetIds",
-        "outputs": [
+            },
             {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getGameResult",
-        "outputs": [
-            {
-                "internalType": "enum TonTipster.Options",
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "enum TonTipster.Options",
+                "internalType": "enum TonTipster.Choice",
                 "name": "choice",
                 "type": "uint8"
             }
         ],
-        "name": "getOpenBets",
-        "outputs": [
-            {
-                "internalType": "uint256[]",
-                "name": "",
-                "type": "uint256[]"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "user",
-                "type": "address"
-            }
-        ],
-        "name": "getOpenBetsAndTotal",
-        "outputs": [
-            {
-                "internalType": "uint256[]",
-                "name": "openBetIds",
-                "type": "uint256[]"
-            },
-            {
-                "internalType": "uint256",
-                "name": "totalAmount",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getOwner",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "betIdToMatch",
-                "type": "uint256"
-            }
-        ],
-        "name": "matchBet",
+        "name": "joinBet",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -185,76 +220,64 @@
     {
         "inputs": [
             {
-                "internalType": "enum TonTipster.Options",
-                "name": "choice",
-                "type": "uint8"
+                "internalType": "uint256",
+                "name": "matchId",
+                "type": "uint256"
             }
         ],
-        "name": "placeBet",
+        "name": "listBetsByMatch",
         "outputs": [
             {
-                "internalType": "uint256",
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "betId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "player1",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "player2",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "totalAmount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "enum TonTipster.BetStatus",
+                        "name": "status",
+                        "type": "uint8"
+                    }
+                ],
+                "internalType": "struct TonTipster.BetDetail[]",
                 "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "secondChoiceBetIds",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
+                "type": "tuple[]"
             }
         ],
         "stateMutability": "view",
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "enum TonTipster.Options",
-                "name": "_gameResult",
-                "type": "uint8"
-            }
-        ],
-        "name": "setGameResult",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
             {
                 "internalType": "address",
                 "name": "",
                 "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "userBets",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
             }
         ],
         "stateMutability": "view",
         "type": "function"
+    },
+    {
+        "stateMutability": "payable",
+        "type": "receive"
     }
 ]

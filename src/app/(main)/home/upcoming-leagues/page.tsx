@@ -28,6 +28,20 @@ const FootballSchedule = () => {
     }
   };
 
+  // Função para limitar a exibição de 3 botões de página
+  const getPageNumbers = () => {
+    const maxPages = 3;
+    const half = Math.floor(maxPages / 2);
+    let start = Math.max(currentPage - half, 1);
+    let end = Math.min(start + maxPages - 1, totalPages);
+
+    if (end - start < maxPages - 1) {
+      start = Math.max(end - maxPages + 1, 1);
+    }
+
+    return [...Array(end - start + 1)].map((_, idx) => start + idx);
+  };
+
   return (
     <div className='flex flex-col gap-2 w-full text-white'>
       <input
@@ -39,7 +53,7 @@ const FootballSchedule = () => {
       />
 
       {paginatedLeagues.flatMap((league: league) => (
-        <Link href={`/home/upcoming-matche?leagueId=${league.id}`} key={league.id}>
+        <Link href={`/home/upcoming-matches?leagueId=${league.id}`} key={league.id}>
           <div className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'>
             <div className='flex justify-between items-center mb-2'>
               <div className='flex items-center'>
@@ -72,13 +86,13 @@ const FootballSchedule = () => {
           Previous
         </button>
 
-        {[...Array(totalPages)].map((_, index) => (
+        {getPageNumbers().map((pageNumber) => (
           <button
-            key={index}
-            className={`px-4 py-2 mx-1 rounded-lg ${currentPage === index + 1 ? 'bg-purple-600 text-white' : 'bg-gray-200 text-black'}`}
-            onClick={() => handlePageChange(index + 1)}
+            key={pageNumber}
+            className={`px-4 py-2 mx-1 rounded-lg ${currentPage === pageNumber ? 'bg-purple-600 text-white' : 'bg-gray-200 text-black'}`}
+            onClick={() => handlePageChange(pageNumber)}
           >
-            {index + 1}
+            {pageNumber}
           </button>
         ))}
 
