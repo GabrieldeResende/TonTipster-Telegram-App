@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "./globals.css";
+import { client } from "@/client";
+import { sepolia } from "thirdweb/chains";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "TonTipster",
-  description: "TonTipster",
-};
 
 export default function RootLayout({
   children,
@@ -19,7 +18,11 @@ export default function RootLayout({
       <head>
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ThirdwebProvider clientId = {`${client.clientId}`}>
+          {children}
+        </ThirdwebProvider>
+      </body>
     </html>
-  )
+  );
 }

@@ -14,7 +14,7 @@ import {
   BetStatus,
   BetDetail,
 } from "../../../../Web3Service";
-// import { useAddress } from "@thirdweb-dev/react";
+import { useAddress } from "@thirdweb-dev/react";
 
 interface FormState {
   selectedGame: string;
@@ -29,7 +29,7 @@ const FootballBetComponent = () => {
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = ''; 
+  const address = useAddress(); 
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });
@@ -118,7 +118,7 @@ const FootballBetComponent = () => {
 
   return (
     <main className="bg-black text-purple-300 flex items-center justify-center px-4 py-6 h-full">
-      <div className="w-full max-w-md border-purple-400 border rounded-lg p-6">
+      <div className="w-full h-full max-w-md border-purple-400 border rounded-lg p-6">
         <div className="space-y-2 mb-4">
           <h2 className="text-purple-400 font-bold">Bets for this Match</h2>
           {existingBets.length > 0 ? (
