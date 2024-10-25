@@ -1,81 +1,73 @@
-'use client'
-import Link from "next/link";
-import { faClockFour, faArrowCircleRight } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+"use client"
+import { useEffect, useState } from "react";
+import { getBetsByAddress, getBet } from "../../../../Web3Service";
+import { useAddress } from "@thirdweb-dev/react";
+import { BetDetail, BetStatus } from "../../../../Web3Service";
+import Web3 from "web3";
 
-const bets = [
-  {
-    id: 1,
-    game: "Patriots vs. Bills",
-    odds: "1.5",
-    amount: "$100",
-    potentialWinnings: "$200",
-    description: "This is a test bet",
-    expiryDate: "2023-05-01",
-  },
-  {
-    id: 2,
-    game: "Packers vs. Bears",
-    odds: "1.5",
-    amount: "$100",
-    potentialWinnings: "$200",
-    description: "This is a test bet",
-    expiryDate: "2023-05-01",
-  },
-  {
-    id: 3,
-    game: "Cowboys vs. Eagles",
-    odds: "1.5",
-    amount: "$100",
-    potentialWinnings: "$200",
-    description: "This is a test bet",
-    expiryDate: "2023-05-01",
-  }
-]
+export default function OpenBetsList() {
+  const [openBets, setOpenBets] = useState<BetDetail[]>([]);
+  const address = ""; // Obtém o endereço da carteira conectada
 
+  // Função para carregar apenas apostas em aberto
+  const loadOpenBetsByAddress = async () => {
+    if (!address) return;
 
-export default function Bet() {
-  const searchParams = new URLSearchParams(window.location.search);
-  console.log(searchParams.get('leagueId'));
+    try {
+      const betsArray: BetDetail[] = [];
+      let index = 0;
+      let betId;
+
+      // Itera sobre os índices e recupera detalhes das apostas
+      while (true) {
+        try {
+          betId = await getBetsByAddress(address, index);
+          const bet = await getBet(betId); // Detalhes da aposta
+
+          // Filtra apenas apostas com status PENDING (em aberto)
+          if (bet.status === BetStatus.PENDING) {
+            betsArray.push(bet);
+          }
+          index++;
+        } catch (error) {
+          // Encerra o loop quando não houver mais apostas
+          console.error(`Error fetching bet at index ${index}:`, error);
+          break;
+        }
+      }
+
+      setOpenBets(betsArray);
+    } catch (error) {
+      console.error("Error loading open bets:", error);
+    }
+  };
+
+  // Carrega as apostas ao montar o componente e quando o endereço mudar
+  useEffect(() => {
+    loadOpenBetsByAddress();
+  }, [address]);
+
   return (
-    <main
-      style={{ backgroundImage: `url(/assets/openBets-background.png)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
-      className="bg-black text-white p-4 h-screen">
-      <div className="font-bold bg-[var(--primary-purple)] p-2 rounded-lg">
-        <h2 className='text-[13px] text-center font-semibold text-gray-300'>Open Bets</h2>
-      </div>
-      <div className='bg-black p-1 flex-grow overflow-y-auto mt-4 mb-20'>
-        {bets.map((bet, index) => (
-          <div key={index} className='border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2 w-full'>
-            <div className='flex justify-between items-center mb-2'>
-              <div className='flex items-left'>
-                <span className='font-bold'>{bet.game}</span>
-              </div>
-              <button className='bg-black hover:bg-[#422479] text-white font-bold py-1 px-2 text-sm rounded-lg'>
-                Place Bet
-              </button>
+    <div className="bg-black text-white p-4 h-screen">
+      <h2 className="text-[13px] text-center font-semibold text-gray-300 mb-4">
+        Open Bets
+      </h2>
+      {openBets.length > 0 ? (
+        <div className="overflow-y-auto">
+          {openBets.map((bet) => (
+            <div
+              key={bet.betId}
+              className="border border-gray-800 bg-[#1F2937] rounded-lg p-4 mb-2"
+            >
+              <p className="font-bold">{`Game: ${bet.player1} vs. ${bet.player2}`}</p>
+              <p>{`Stake: ${Web3.utils.fromWei(bet.totalAmount, "ether")} ETH`}</p>
+              <p className="text-yellow-400">{`Status: Open`}</p>
             </div>
-            <div className='flex items-center justify-between text-[#D5B3FB] mb-1'>
-              <div className="flex items-center">
-                <FontAwesomeIcon icon={faClockFour} />
-                <p className="ml-1">{bet.expiryDate}</p>
-              </div>
-              <div>
-                <p>{`Odds: ${bet.odds}`}</p>
-              </div>
-            </div>
-            <div className='flex items-center justify-between text-sm'>
-              <div>
-                <p className="text-[#7F8793]">{`Stake: ${bet.amount}`}</p>
-              </div>
-              <div className="flex items-center">
-                <FontAwesomeIcon color="#4AD77E" icon={faArrowCircleRight} />
-                <p className="text-[#4AD77E] ml-1">{`Potential win: ${bet.potentialWinnings}`}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
-  )
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-400 text-center">No open bets found for this address.</p>
+      )}
+    </div>
+  );
 }
