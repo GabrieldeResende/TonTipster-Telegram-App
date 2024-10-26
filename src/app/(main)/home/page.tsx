@@ -26,14 +26,17 @@ export default function Matches() {
               </Link>
             </div>
             <div>
-              <div className='flex mb-2'>
+              <div className='flex mb-1'>
                 <img className='mr-2' src=".\assets\logo brighton.png" alt="" />
-                <h2 className='text-xl text-white'>Brigton</h2>
+                <h2 className='text-xl text-black'>Brigton</h2>
               </div>
-              <div className='flex mb-2'>
+              <div className='flex mb-1'>
                 <img className='mr-2' src=".\assets\logo manchester.png" alt="" />
-                <h2 className='text-xl text-white'>Manchester United</h2>
+                <h2 className='text-xl text-black'>Manchester United</h2>
               </div>
+            </div>
+            <div className='text-white text-right'>
+              <h1>Comming Soon</h1>
             </div>
           </div>
         </div>

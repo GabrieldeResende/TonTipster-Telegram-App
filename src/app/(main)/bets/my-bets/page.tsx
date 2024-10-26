@@ -24,11 +24,11 @@ export default function Bet() {
     <main className="bg-black text-white px-4 h-screen">
       <div className="flex flex-row items-center justify-between font-bold p-2 w-full rounded-lg">
         <h2 className='text-lg font-semibold text-gray-400 mt-4'>My Bets</h2>
-        <Link href="/bets/post-bet">
+        {/* <Link href="/bets/post-bet">
           <button className='bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-2 mt-4 rounded-lg'>
             Post Bet
           </button>
-        </Link>
+        </Link> */}
       </div>
       <div className='flex-grow overflow-y-auto mt-4 mb-20'>
         {myBetsNav.map((bet, index) => (
