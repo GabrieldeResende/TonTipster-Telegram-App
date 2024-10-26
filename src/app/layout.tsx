@@ -1,7 +1,7 @@
 "use client";
 
 import { Inter } from "next/font/google";
-import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
+// import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import "./globals.css";
 import { client } from "@/client";
 import { sepolia } from "thirdweb/chains";
@@ -19,9 +19,7 @@ export default function RootLayout({
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
       </head>
       <body className={inter.className}>
-        <ThirdwebProvider clientId = {`${client.clientId}`}>
-          {children}
-        </ThirdwebProvider>
+        {children}
       </body>
     </html>
   );

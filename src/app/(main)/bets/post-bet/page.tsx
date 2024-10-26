@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import useMatches from "@/app/hooks/use-Matches";
 import { teams } from "@/entity/match";
@@ -14,7 +14,6 @@ import {
   BetStatus,
   BetDetail,
 } from "../../../../Web3Service";
-import { useAddress } from "@thirdweb-dev/react";
 
 interface FormState {
   selectedGame: string;
@@ -24,12 +23,13 @@ interface FormState {
   description: string;
 }
 
-const FootballBetComponent = () => {
+// Componente que contém a lógica principal
+const FootballBetContent = () => {
   const [teamsName, setTeamsName] = useState<teams | null>(null);
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = useAddress(); 
+  const address = "";
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });
@@ -185,6 +185,21 @@ const FootballBetComponent = () => {
         </div>
       </div>
     </main>
+  );
+};
+
+// Componente wrapper com Suspense
+const FootballBetComponent = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center h-screen bg-black text-purple-300">
+          Loading bet details...
+        </div>
+      }
+    >
+      <FootballBetContent />
+    </Suspense>
   );
 };
 

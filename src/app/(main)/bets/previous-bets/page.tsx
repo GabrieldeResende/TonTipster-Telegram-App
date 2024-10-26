@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
-import { useAddress } from "@thirdweb-dev/react";
+// import { useAddress } from "@thirdweb-dev/react";
 import { getBetsByAddress, getBet } from "../../../../Web3Service";
 import { BetDetail, BetStatus } from "../../../../Web3Service";
 import Web3 from "web3";

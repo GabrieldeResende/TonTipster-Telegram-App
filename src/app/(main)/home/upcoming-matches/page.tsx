@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import useMatches from '@/app/hooks/use-Matches';
@@ -8,11 +8,10 @@ import { useSearchParams } from 'next/navigation';
 
 const ITEMS_PER_PAGE = 10;
 
-const MatchesSchedule = () => {
-
+// Componente que usa useSearchParams
+const MatchesScheduleContent = () => {
     const searchParams = useSearchParams();
     const leagueId = parseInt(searchParams.get('leagueId') ?? '0');
-    
     
     const matches = useMatches({ leagueId: leagueId, fixtureId: 0 });
     const [currentPage, setCurrentPage] = useState(1);
@@ -133,6 +132,15 @@ const MatchesSchedule = () => {
                 </button>
             </div>
         </div>
+    );
+};
+
+// Componente wrapper com Suspense
+const MatchesSchedule = () => {
+    return (
+        <Suspense fallback={<div className="text-white">Loading matches...</div>}>
+            <MatchesScheduleContent />
+        </Suspense>
     );
 };
 

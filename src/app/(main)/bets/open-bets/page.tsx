@@ -1,7 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
 import { getBetsByAddress, getBet } from "../../../../Web3Service";
-import { useAddress } from "@thirdweb-dev/react";
 import { BetDetail, BetStatus } from "../../../../Web3Service";
 import Web3 from "web3";
 
