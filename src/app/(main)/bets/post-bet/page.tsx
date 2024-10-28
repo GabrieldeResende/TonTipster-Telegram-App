@@ -29,7 +29,7 @@ const FootballBetContent = () => {
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = "";
+  const address = '';
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });

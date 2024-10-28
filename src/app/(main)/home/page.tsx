@@ -1,8 +1,6 @@
 "use client"
 import React from 'react';
 import Link from "next/link";
-import { ConnectButton } from 'thirdweb/react';
-
 
 export default function Matches() {
 

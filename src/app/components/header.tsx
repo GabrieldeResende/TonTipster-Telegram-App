@@ -1,9 +1,8 @@
 "use client"
 import Link from "next/link";
 import Image from "next/image";
-import { ConnectButton, darkTheme } from "thirdweb/react";
+import { ConnectButton } from "thirdweb/react";
 import { client } from "@/client";
-import { sepolia } from "thirdweb/chains";
 
 export default function Header() {
 
@@ -25,7 +24,6 @@ export default function Header() {
       {/* <WalletConnectBtn /> */}
       <ConnectButton
         client={client}
-        chain={sepolia}
       />
     </div>
   )
