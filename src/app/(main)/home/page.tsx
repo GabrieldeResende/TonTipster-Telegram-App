@@ -11,12 +11,12 @@ export default function Matches() {
           <h1 className='text-[12px]'>@OneMilliCrypto - WON - 150,000 Tipster Token</h1>
         </div>
         <div
-          style={{ backgroundImage: `url(/assets/manu_playing.png)` }}
+          style={{ backgroundImage: `url(/assets/newCastle-Arsenal.jfif)` }}
           className='w-full bg-cover bg-center rounded-lg p-4 my-8'
         >
           <div className='h-52 flex flex-col justify-between'>
             <div className='flex flex-row justify-between items-center'>
-              <h3 className='text-white'>Tomorrow at 5:30pm</h3>
+              <h3 className='text-white'>Sat at 09:30pm</h3>
               <Link href="/bets/open-bets">
                 <button className='bg-[var(--primary-purple)] hover:bg-[var(--primary-purple)] text-white font-bold py-2 px-8 rounded-lg'>
                   PLACE BET
@@ -25,12 +25,12 @@ export default function Matches() {
             </div>
             <div>
               <div className='flex mb-1'>
-                <img className='mr-2' src=".\assets\logo brighton.png" alt="" />
-                <h2 className='text-xl text-purple-700'>Brigton</h2>
+                <img className='mr-2 max-w-5' src=".\assets\newCastle.png" alt="" />
+                <h2 className='text-xl text-white'>New Castle</h2>
               </div>
               <div className='flex mb-1'>
-                <img className='mr-2' src=".\assets\logo manchester.png" alt="" />
-                <h2 className='text-xl text-purple-700'>Manchester United</h2>
+                <img className='mr-2 max-w-5' src=".\assets\arsenal.png" alt="" />
+                <h2 className='text-xl text-white'>Arsenal</h2>
               </div>
             </div>
             <div className='text-white text-right'>

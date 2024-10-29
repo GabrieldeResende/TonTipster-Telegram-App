@@ -30,7 +30,7 @@ const FootballBetContent = () => {
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = useAddress();
+  const address = "";
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });
@@ -131,7 +131,7 @@ const FootballBetContent = () => {
               <option value="" disabled>Select a bet</option>
               {existingBets.map((bet) => (
                 <option key={bet.betId} value={bet.betId}>
-                  Bet ID: {bet.betId} - {Web3.utils.fromWei(bet.totalAmount, "ether")} ETH
+                  Bet ID: {bet.betId} - {Web3.utils.fromWei(bet.totalAmount, "ether")} USD
                 </option>
               ))}
             </select>
@@ -157,6 +157,11 @@ const FootballBetContent = () => {
             </select>
           </div>
 
+          <div className="flex flex-col text-sm font-medium">
+            <label className="mb-2" htmlFor="">Split</label>
+            <input className="w-1/2 p-2 outline-none border-purple-400 border rounded-md bg-black text-white" type="text" />
+          </div>
+
           <button
             type="submit"
             disabled={!address || !formState.selectedGame}
@@ -171,7 +176,7 @@ const FootballBetContent = () => {
           <input
             type="number"
             step="0.01"
-            placeholder="Bet Amount (ETH)"
+            placeholder="Bet Amount (USD)"
             value={formState.betAmount}
             onChange={(e) => handleInputChange("betAmount", e.target.value)}
             className="w-full p-2 border-purple-400 border rounded-md bg-black text-white"
