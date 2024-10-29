@@ -40,7 +40,7 @@ export default function Matches() {
         </div>
         <Link href="/home/upcoming-ufc-events">
           <div
-            style={{ backgroundImage: `url(/assets/ufc-background.png)` }}
+            style={{ backgroundImage: `url(/assets/boxing-background.png)` }}
             className='w-full bg-cover bg-center rounded-lg p-6 my-4'
           >
             <div className='flex flex-col justify-between'>
@@ -52,7 +52,7 @@ export default function Matches() {
         </Link>
         <Link href="/home/upcoming-boxe">
           <div
-            style={{ backgroundImage: `url(/assets/boxing-background.png)` }}
+            style={{ backgroundImage: `url(/assets/UFC-background.png)` }}
             className='w-full bg-cover bg-center rounded-lg p-6 my-4'
           >
             <div className='flex flex-col justify-between'>
