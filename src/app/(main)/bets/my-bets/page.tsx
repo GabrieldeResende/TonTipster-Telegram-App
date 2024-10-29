@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { ThirdwebProvider } from "thirdweb/react"
 
 const myBetsNav = [
   {

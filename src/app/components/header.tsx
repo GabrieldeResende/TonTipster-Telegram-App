@@ -2,7 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "thirdweb/react";
+import { createThirdwebClient } from "thirdweb";
 import { client } from "@/client";
+import { sepolia } from 'thirdweb/chains'
 
 export default function Header() {
 
@@ -24,6 +26,7 @@ export default function Header() {
       {/* <WalletConnectBtn /> */}
       <ConnectButton
         client={client}
+        chain={sepolia}
       />
     </div>
   )

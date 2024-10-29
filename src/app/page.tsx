@@ -12,7 +12,7 @@ export default function Home() {
             <h1 className="text-4xl font-light">TIPSTER</h1>
           </div>
         </div>
-          <p className="text-base pt-6 ">Powered by $TON</p>
+        <p className="text-base pt-6 ">Powered by $TON</p>
       </div>
       <div className="w-full">
         <Link href="/home">

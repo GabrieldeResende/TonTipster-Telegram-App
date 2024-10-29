@@ -26,11 +26,11 @@ export default function Matches() {
             <div>
               <div className='flex mb-1'>
                 <img className='mr-2' src=".\assets\logo brighton.png" alt="" />
-                <h2 className='text-xl text-black'>Brigton</h2>
+                <h2 className='text-xl text-purple-700'>Brigton</h2>
               </div>
               <div className='flex mb-1'>
                 <img className='mr-2' src=".\assets\logo manchester.png" alt="" />
-                <h2 className='text-xl text-black'>Manchester United</h2>
+                <h2 className='text-xl text-purple-700'>Manchester United</h2>
               </div>
             </div>
             <div className='text-white text-right'>

@@ -1,9 +1,9 @@
+"use client"
 import { createThirdwebClient } from "thirdweb";
 
-const clientId = process.env.CLIENT_ID;
-const secretKey = process.env.SECRET_KEY;
+const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
+const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY;
 
 export const client = createThirdwebClient({
-    clientId: `${clientId}`,
-    secretKey: `${secretKey}`
+    clientId: `${clientId}`
 });

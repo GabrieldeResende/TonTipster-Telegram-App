@@ -28,7 +28,8 @@ function getWeb3(): Web3 {
 
 function getContract(web3?: Web3): Contract<typeof ABI> {
     if (!web3) web3 = getWeb3()
-    return new web3.eth.Contract(ABI, `${process.env.REACT_APP_CONTRACT_ADDRESS}`)
+    const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS || '0x456D48c488623feF3904A8aA5a603B75f6bdd1AA';
+    return new web3.eth.Contract(ABI, contractAddress)
 }
 
 export async function createBet(matchId: number, choice: Choice): Promise<any> {

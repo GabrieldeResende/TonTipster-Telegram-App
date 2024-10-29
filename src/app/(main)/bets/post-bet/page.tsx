@@ -5,6 +5,7 @@ import useMatches from "@/app/hooks/use-Matches";
 import { teams } from "@/entity/match";
 import Web3 from "web3";
 import { toast } from "react-hot-toast";
+import { useAddress } from "@thirdweb-dev/react"
 import {
   createBet,
   joinBet,
@@ -29,7 +30,7 @@ const FootballBetContent = () => {
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = '';
+  const address = useAddress();
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });
