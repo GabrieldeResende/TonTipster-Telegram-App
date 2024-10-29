@@ -7,9 +7,9 @@ export default function Matches() {
   return (
     <main className='flex min-h-screen flex-col text-sm items-start p-4 bg-black'>
       <div className='w-full h-full'>
-        <div className='text-white bg-[var(--primary-purple)] mt-1 p-4'>
+        {/* <div className='text-white bg-[var(--primary-purple)] mt-1 p-4'>
           <h1 className='text-[12px]'>@OneMilliCrypto - WON - 150,000 Tipster Token</h1>
-        </div>
+        </div> */}
         <div
           style={{ backgroundImage: `url(/assets/newCastle-Arsenal.jfif)` }}
           className='w-full bg-cover bg-center rounded-lg p-4 my-8'

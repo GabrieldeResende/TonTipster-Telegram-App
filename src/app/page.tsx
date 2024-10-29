@@ -8,7 +8,7 @@ export default function Home() {
         <div className="flex flex-row items-center">
           <Image src="/assets/tontipster-logo.png" alt="Tontipster Logo" width={120} height={150} />
           <div className="flex flex-col items-left pl-2">
-            <h1 className="text-4xl font-light">TON</h1>
+            <h1 className="text-4xl font-light">TONY</h1>
             <h1 className="text-4xl font-light">TIPSTER</h1>
           </div>
         </div>

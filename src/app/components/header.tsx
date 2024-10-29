@@ -19,7 +19,7 @@ export default function Header() {
             height={50}
           />
           <div className='flex pl-2'>
-            <p className='text-lg font-light'>TonTipster</p>
+            <p className='text-lg font-light'>TonyTipster</p>
           </div>
         </div>
       </Link>
