@@ -13,8 +13,9 @@ export default function Header() {
       <Link href='/home'>
         <div className='flex flex-row items-center'>
           <Image
-            src='/assets/tontipster-logo.png'
+            src='/assets/TonytipsterLogo.jpeg'
             alt='Tontipster Logo'
+            className="rounded-xl"
             width={40}
             height={50}
           />
@@ -28,6 +29,14 @@ export default function Header() {
         client={client}
         chain={sepolia}
       />
+
+      {/* <div className="bg-slate-900 border-black flex p-[8px] rounded-[8px]">
+        <img src="/blockies/blockie1.svg" alt="" className="w-[35px] h-[35px] mr-3" />
+        <div>
+          <p className="text-[12px]">0x67yz...3A4F</p>
+          <p className="text-[12px] text-[#7c7a85] font-normal">0.8235 ETH</p>
+        </div>
+      </div> */}
     </div>
   )
 }

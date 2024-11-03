@@ -10,9 +10,8 @@ import Web3 from "web3";
 export default function PreviousBets() {
   const [closedBets, setClosedBets] = useState<BetDetail[]>([]);
   // const address = useAddress(); 
-  const address = ""; 
+  const address = "";
 
-  // Função para carregar apostas finalizadas ou canceladas
   const loadClosedBets = async () => {
     if (!address) return;
 
@@ -21,13 +20,10 @@ export default function PreviousBets() {
       let index = 0;
       let betId;
 
-      // Itera sobre as apostas associadas ao endereço
       while (true) {
         try {
           betId = await getBetsByAddress(address, index);
           const bet = await getBet(betId);
-
-          // Filtra apenas apostas FINALIZADAS ou CANCELADAS
           if (
             bet.status === BetStatus.FINALIZED ||
             bet.status === BetStatus.CANCELLED
@@ -95,9 +91,18 @@ export default function PreviousBets() {
             </div>
           ))
         ) : (
-          <p className="text-gray-400 text-center">
-            No previous bets found.
-          </p>
+          // <div className="bg-purple-700 p-3">
+          //   <div className="flex justify-between w-full">
+          //     <h1 className="mb-2">Chelsea</h1>
+          //     <p className="text-black">vs</p>
+          //     <h1 className="mb-2">Newcastle</h1>
+          //   </div>
+          //   <div className="flex justify-between w-full">
+          //     <p className="text-green-500">Win</p>
+          //     <p>$ 550.00</p>
+          //   </div>
+          // </div>
+          <p className="text-gray-400 text-center">No Previous Bets.</p>
         )}
       </div>
     </main>
