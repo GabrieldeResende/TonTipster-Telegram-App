@@ -17,10 +17,10 @@ export default function Home() {
         <Link href="/home">
           <button className="bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-5 rounded-lg w-full mb-3">SPORTS</button>
         </Link>
-        <Link href="/home">
+        <Link href="#">
           <button className="bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-5 rounded-lg w-full mb-3">ESPORTS (COMING SOON)</button>
         </Link>
-        <Link href="/home">
+        <Link href="#">
           <button className="bg-[#673BB7] hover:bg-[#422479] text-white font-bold p-5 rounded-lg w-full mb-3">CASINO (COMING SOON)</button>
         </Link>
       </div>

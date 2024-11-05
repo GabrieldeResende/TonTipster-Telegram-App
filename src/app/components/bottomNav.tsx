@@ -35,7 +35,7 @@ const BottomNav = () => {
           <p className='text-sm'>My Bets</p>
         </div>
       </Link>
-      {/* <Link href='/home/leaderboard' passHref>
+      <Link href='/home/leaderboard' passHref>
         <div
           className={`flex flex-col items-center ${pathname === "/home/leaderboard" ? "text-purple-500" : "text-white"
             }`}
@@ -43,7 +43,7 @@ const BottomNav = () => {
           <FontAwesomeIcon icon={faTabletAlt} />
           <p className='text-sm'>LeaderBoard</p>
         </div>
-      </Link> */}
+      </Link>
     </nav>
   )
 }
