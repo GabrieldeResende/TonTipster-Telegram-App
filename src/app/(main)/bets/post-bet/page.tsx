@@ -30,7 +30,7 @@ const FootballBetContent = () => {
   const [existingBets, setExistingBets] = useState<BetDetail[]>([]);
   const [depositFee, setDepositFee] = useState<string>("0");
 
-  const address = useAddress();
+  const address = "";
   const searchParams = useSearchParams();
   const fixtureId = parseInt(searchParams.get("fixtureId") ?? "0");
   const match = useMatches({ leagueId: 0, fixtureId });
@@ -126,7 +126,6 @@ const FootballBetContent = () => {
 
 const FootballBetComponent = () => {
   return (
-    <ThirdwebProvider>
       <Suspense
         fallback={
           <div className="flex items-center justify-center h-screen bg-black text-purple-300">
@@ -136,7 +135,6 @@ const FootballBetComponent = () => {
       >
         <FootballBetContent />
       </Suspense>
-    </ThirdwebProvider>
   );
 };
 
