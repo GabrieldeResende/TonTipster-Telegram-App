@@ -5,6 +5,7 @@ import { ConnectButton } from "thirdweb/react";
 import { createThirdwebClient } from "thirdweb";
 import { client } from "@/client";
 import { sepolia } from 'thirdweb/chains'
+import ConnectWalletButton from "./ConnectWalletButton";
 
 export default function Header() {
 
@@ -25,10 +26,11 @@ export default function Header() {
         </div>
       </Link>
       {/* <WalletConnectBtn /> */}
-      <ConnectButton
+      <ConnectWalletButton />
+      {/* <ConnectButton
         client={client}
         chain={sepolia}
-      />
+      /> */}
 
       {/* <div className="bg-slate-900 border-black flex p-[8px] rounded-[8px]">
         <img src="/blockies/blockie1.svg" alt="" className="w-[35px] h-[35px] mr-3" />
