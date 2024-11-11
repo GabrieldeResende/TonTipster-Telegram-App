@@ -12,7 +12,6 @@ import {
   getBetsByMatch,
   getDepositFee,
   Choice,
-  BetStatus,
   BetDetail,
 } from "../../../../Web3Service";
 import { ThirdwebProvider } from "thirdweb/react";
