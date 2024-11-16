@@ -26,11 +26,11 @@ export default function Header() {
         </div>
       </Link>
       {/* <WalletConnectBtn /> */}
-      <ConnectWalletButton />
-      {/* <ConnectButton
+      {/* <ConnectWalletButton /> */}
+      <ConnectButton
         client={client}
         chain={sepolia}
-      /> */}
+      />
 
       {/* <div className="bg-slate-900 border-black flex p-[8px] rounded-[8px]">
         <img src="/blockies/blockie1.svg" alt="" className="w-[35px] h-[35px] mr-3" />

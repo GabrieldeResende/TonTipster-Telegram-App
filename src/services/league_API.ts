@@ -5,8 +5,9 @@ export const fetchLeagueAPI = async () => {
         const options = {
             method: 'GET',
             url: `https://v3.football.api-sports.io/leagues?current=true&season=${new Date().getFullYear()}`,
+            // url: `https://v3.football.api-sports.io/leagues?season=2020`,
             headers: {
-                'x-rapidapi-key': '86ead8f9b275639a60446ddeae83c439',
+                'x-rapidapi-key': '71a235c9e1f33c2b0836c1d726dea116',
                 'x-rapidapi-host': 'v3.football.api-sports.io'
             }
         };
